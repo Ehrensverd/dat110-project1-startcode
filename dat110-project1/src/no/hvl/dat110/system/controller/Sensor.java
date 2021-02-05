@@ -9,10 +9,10 @@ public class Sensor extends RPCStub {
 	
 	public int read() {
 		
-		int temp;
-		
 		// TODO
 		// implement marshalling, call and unmarshalling for read RPC method
+
+		int temp;
 
 		byte[] request = RPCUtils.marshallVoid(RPCID);
 		byte[] response = rpcclient.call(request);
