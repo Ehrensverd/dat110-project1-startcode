@@ -34,9 +34,9 @@ public class Message {
 		// encoded byte array according to message format
 		//
 		encoded = new byte[MessageConfig.SEGMENTSIZE];  // 128
-		byte payload_size = (byte)this.payload.length;
-		encoded[0] = payload_size; // Add metadata and encapsulate
-		System.arraycopy(this.payload, 0, encoded, 1, payload_size); // Copy from array to array
+		byte payloadSize = (byte)this.payload.length;
+		encoded[0] = payloadSize; // Add metadata and encapsulate
+		System.arraycopy(this.payload, 0, encoded, 1, payloadSize); // Copy from array to array
 		//
 
 		return encoded;
@@ -53,7 +53,6 @@ public class Message {
 		System.arraycopy(received, 1, this.payload, 0, this.payload.length); // Copy from array to array
 		//
 
-		throw new UnsupportedOperationException(TODO.method());
 
 	}
 }
