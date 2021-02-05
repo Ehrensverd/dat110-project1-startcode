@@ -65,6 +65,6 @@ public class MessagingServer {
 				ex.printStackTrace();
 			}
 		}
-	}
+	} // sjekk om push fungerar Jogeir
 
 }
