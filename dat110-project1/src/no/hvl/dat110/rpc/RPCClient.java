@@ -48,8 +48,8 @@ public class RPCClient {
 		Message messageRequest = new Message(rpcrequest);
 		connection.send(messageRequest);
 
-		Message recievedMessage = connection.receive();
-		rpcreply = recievedMessage.getData();
+		Message receivedMessage = connection.receive();
+		rpcreply = receivedMessage.getData();
 
 		return rpcreply;
 		
