@@ -11,7 +11,7 @@ public class Message {
 	public Message(byte[] payload) {
 		// TODO: check for length within boundary
 		//
-		if(payload.length <= 128)	// Ensure payload is less than or equal to 127 bytes
+		if(payload.length <= MessageConfig.SEGMENTSIZE)	// Ensure payload is less than or equal to 127 bytes
 			this.payload = payload;
 		//
 	}
@@ -33,7 +33,7 @@ public class Message {
 		// encapulate/encode the payload of this message in the
 		// encoded byte array according to message format
 		//
-		encoded = new byte[128];
+		encoded = new byte[MessageConfig.SEGMENTSIZE];  // 128
 		byte payload_size = (byte)this.payload.length;
 		encoded[0] = payload_size; // Add metadata and encapsulate
 		System.arraycopy(this.payload, 0, encoded, 1, payload_size); // Copy from array to array

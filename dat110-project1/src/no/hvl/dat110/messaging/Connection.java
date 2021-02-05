@@ -59,7 +59,7 @@ public class Connection {
 		message = new Message();
 		try {
 
-			recvbuf = new byte[128];
+			recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 			inStream.read(recvbuf);
 			message.decapsulate(recvbuf);
 		} catch (IOException exception) {
