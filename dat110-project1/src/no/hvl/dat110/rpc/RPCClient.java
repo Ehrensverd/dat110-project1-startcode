@@ -46,11 +46,9 @@ public class RPCClient {
 		byte[] rpcreply;
 
 		Message messageRequest = new Message(rpcrequest);
-//		messageRequest.encapsulate();
 		connection.send(messageRequest);
 
 		Message recievedMessage = connection.receive();
-//		recievedMessage.decapsulate();
 		rpcreply = recievedMessage.getData();
 
 		return rpcreply;
