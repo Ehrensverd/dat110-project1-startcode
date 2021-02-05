@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import no.hvl.dat110.TODO;
@@ -20,12 +21,10 @@ public class RPCUtils {
 	public static byte[] marshallString(byte rpcid, String str) {
 
 		byte[] encoded;
-
-
 		byte[] stringByteArray = str.getBytes();
 		encoded = new byte[str.length() + 1]; // Possible trouble
 		encoded[0] = rpcid;
-		System.arraycopy(stringByteArray,0 ,encoded , 1 ,encoded.length );
+		System.arraycopy(stringByteArray,0 ,encoded , 1 ,stringByteArray.length );
 
 		return encoded;
 	}
@@ -33,10 +32,10 @@ public class RPCUtils {
 	public static String unmarshallString(byte[] data) {
 
 		String decoded;
-		byte[] temp = new byte[data.length -1];
-		System.arraycopy(data, 1, temp, 0, temp.length);
+		byte[] stringArray = new byte[data.length -1];
+		System.arraycopy(data, 1, stringArray, 0, stringArray.length);
 
-		decoded = new String(temp);
+		decoded = new String(stringArray);
 
 		return decoded;
 	}
@@ -52,7 +51,8 @@ public class RPCUtils {
 
 	public static void unmarshallVoid(byte[] data) {
 
-		// TODO: unmarshall void type
+		// nothing to return or process
+
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -79,25 +79,20 @@ public class RPCUtils {
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
 		byte[] encoded;
+		encoded = new byte[5];
+		encoded[0] = rpcid;
 
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
+		byte[] intBytes = ByteBuffer.allocate(4).putInt(x).array();
+		System.arraycopy(intBytes,0, encoded, 1, intBytes.length);
 		return encoded;
 	}
 
 	public static int unmarshallInteger(byte[] data) {
 
 		int decoded;
-
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		byte[] intArray = new byte[data.length -1];
+		System.arraycopy(data, 1, intArray, 0, data.length-1  );
+		decoded = ByteBuffer.wrap(intArray).getInt();
 
 		return decoded;
 
